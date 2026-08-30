@@ -55,3 +55,9 @@ Unchanged: `POST /api/waitlist`, Neon or JSONL fallback, E.164 phone, referral, 
 
 ## Generated assets
 See `public/generated/SOURCES.md`. The dinner-table illustration is no longer on the page (section cut) but is kept for later use.
+
+## Hosting (2026-08-30)
+- **Vercel** project `mutuals` (team kyrillus-projects), region `fra1` via `vercel.json`. Production alias: https://mutuals-theta.vercel.app. Deployment protection set to "prod deployment URLs and all previews" so the production alias is public while previews stay gated. When getmutuals.ai is bought: add the domain in Vercel, then optionally set `NEXT_PUBLIC_SITE_URL=https://getmutuals.ai` (otherwise the site URL follows `VERCEL_PROJECT_PRODUCTION_URL` automatically).
+- **Neon** project `mutuals` (`aws-eu-central-1`, Postgres 17). Schema from `db/schema.sql` applied. `DATABASE_URL` is set for production/preview/development on Vercel and in `site/.env.local` (gitignored).
+- Still unset (optional): `RESEND_API_KEY` (confirmation email), `TURNSTILE_SECRET_KEY` + `NEXT_PUBLIC_TURNSTILE_SITE_KEY` (bot protection; honeypot + IP rate limit are active regardless), `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` (analytics).
+- Deploy: `cd site && vercel deploy --prod` (or connect the GitHub repo in Vercel for push-to-deploy; root directory `site`).
