@@ -47,7 +47,9 @@ const frauncesItalic = Fraunces({
 const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap", preload: false });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap", preload: false });
 
-const SITE = "https://getmutuals.ai";
+import { siteUrl } from "@/lib/site";
+
+const SITE = siteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),

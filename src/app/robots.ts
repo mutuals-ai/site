@@ -1,3 +1,4 @@
+import { siteUrl } from "@/lib/site";
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
@@ -6,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://getmutuals.ai/sitemap.xml",
+    sitemap: `${siteUrl()}/sitemap.xml`,
   };
 }

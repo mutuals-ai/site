@@ -263,10 +263,10 @@ export function WaitlistForm({
             Move up the list: each friend who joins moves you up 10 spots.
           </p>
           <div className="mt-2 flex flex-wrap items-center gap-3">
-            <span className="text-[13px]">{`getmutuals.ai/?r=${result.referralCode}`}</span>
+            <span className="text-[13px]">{`${typeof window !== "undefined" ? window.location.host : "getmutuals.ai"}/?r=${result.referralCode}`}</span>
             <button
               type="button"
-              onClick={() => handleCopy(`getmutuals.ai/?r=${result.referralCode}`)}
+              onClick={() => handleCopy(`${window.location.origin}/?r=${result.referralCode}`)}
               className={
                 inverted
                   ? "rounded-md border border-paper/35 px-3 py-1 text-[13px] text-paper transition-colors hover:border-paper"

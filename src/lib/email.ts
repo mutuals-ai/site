@@ -1,3 +1,4 @@
+import { siteHost, siteUrl } from "@/lib/site";
 /**
  * Confirmation email via Resend. No-op (with a console.info) when
  * RESEND_API_KEY is not set, so signup works end-to-end without keys.
@@ -19,7 +20,7 @@ function renderText({ position, referralCode }: SendConfirmationInput): string {
     `We'll message you when your spot opens.`,
     ``,
     `Move up the list: each friend who joins moves you up 10 spots.`,
-    `getmutuals.ai/?r=${referralCode}`,
+    `${siteHost()}/?r=${referralCode}`,
   ].join("\n");
 }
 
@@ -38,7 +39,7 @@ function renderHtml({ position, referralCode }: SendConfirmationInput): string {
                 <div style="margin-top:12px;">We'll message you when your spot opens.</div>
                 <div style="margin-top:20px;color:#A8A39B;">
                   Move up the list: each friend who joins moves you up 10 spots.<br />
-                  <a href="https://getmutuals.ai/?r=${referralCode}" style="color:#2F7FD6;">getmutuals.ai/?r=${referralCode}</a>
+                  <a href="${siteUrl()}/?r=${referralCode}" style="color:#2F7FD6;">${siteHost()}/?r=${referralCode}</a>
                 </div>
               </td>
             </tr>
