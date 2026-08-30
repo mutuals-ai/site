@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+/* ── Mutuals tokens [DECISION] ─────────────────────────────── */
+:root {
+  /* Dark theme [DECISION 2026-08-30]: paper = near-black ground, ink = light type.
+     Semantic names kept so components read the same on either theme. */
+  --ink: #f2ede4;
+  --paper: #0e0c0b;
+  --paper-2: #1a1715;
+  --signal: #5fa8f7;
+  --signal-2: #a9cdff;
+  --ember: #b8452b;
+  --ink-soft: rgba(242, 237, 228, 0.66);
+  --ink-faint: rgba(242, 237, 228, 0.52);
+  --grain-url: url("/generated/paper-grain.png");
+}
+
+@theme inline {
+  --color-*: initial;
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-signal: var(--signal);
+  --color-signal-2: var(--signal-2);
+  --color-ember: var(--ember);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+
+  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-geist-sans), Inter, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace;
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  scroll-behavior: smooth;
+}
+/* Full-bleed bands use 100vw, which includes the scrollbar; clip so the page never scrolls sideways. */
+html, body { overflow-x: clip; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--signal); color: var(--paper); }
+
+/* Focus rings: 2px signal-2 outer */
+:focus-visible {
+  outline: 2px solid var(--signal-2);
+  outline-offset: 3px;
+}
+
+/* Display serif settings */
+.font-display {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+  font-weight: 400;
+}
+.font-display em, .font-display i {
+  font-family: var(--font-fraunces-italic), var(--font-display);
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+
+/* Paper grain overlay (image injected once assets exist) */
+.paper-grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0.07;
+  mix-blend-mode: screen;
+  background-image: var(--grain-url, none);
+  background-repeat: repeat;
+  background-size: 512px 512px;
+}
+
+/* Scroll reveal: opacity + 12px translate, 500ms, ease-out, stagger 60ms via --i */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 500ms var(--ease-out-quart), transform 500ms var(--ease-out-quart);
+  transition-delay: calc(var(--i, 0) * 60ms);
+}
+.reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Mono label utility */
+.label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ticker */
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Hero headline: masked line rise, CSS only */
+.hero-line { display: block; overflow: hidden; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+.hero-line-inner { display: block; transform: translateY(110%); animation: hero-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes hero-rise { to { transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-line-inner { transform: none; animation: none; }
+}
+.hero-fade { opacity: 0; transform: translateY(14px); animation: hero-fade 0.7s ease-out 0.5s forwards; }
+@keyframes hero-fade { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .hero-fade { opacity: 1; transform: none; animation: none; } }
+
+/* Preloaded glyph subsets: ONLY for text whose characters are fully covered
+   ("Your people," / "remembered." / "Mutuals"). Never use on other text. */
+.font-display-hero { font-family: var(--font-fraunces-sub), var(--font-fraunces), "Iowan Old Style", Georgia, serif; }
+.font-display-hero em { font-family: var(--font-fraunces-italic-sub), var(--font-fraunces-italic), var(--font-fraunces), Georgia, serif; }
