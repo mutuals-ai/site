@@ -306,6 +306,7 @@ export function Story() {
             start: "top top",
             end: "+=200%",
             scrub: 0.6,
+            anticipatePin: 1,
             invalidateOnRefresh: true,
           },
         });

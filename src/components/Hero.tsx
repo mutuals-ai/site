@@ -16,7 +16,7 @@ import { copy } from "@/lib/copy";
  */
 export function Hero() {
   return (
-    <section className="relative flex min-h-[100dvh] flex-col overflow-x-clip">
+    <section className="relative flex min-h-[100svh] flex-col overflow-x-clip">
       <HeroNetwork />
       <div className="relative z-10 mx-auto flex w-full max-w-[1120px] flex-1 flex-col items-center justify-center px-5 pt-20 text-center sm:px-8">
         {/* CSS-only masked rise: paints on first frame, so LCP never waits for JS. */}

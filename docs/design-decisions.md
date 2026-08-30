@@ -39,7 +39,7 @@ Derived: `--ink-soft` 66%, `--ink-faint` 40%. Paper grain overlay at 7% `screen`
 - Latin subset only; two tiny preloaded subsets carry the above-the-fold glyphs: `Fraunces-hero.woff2` (upright, text "Your people,Mutals") and `FrauncesItalic-remembered.woff2`. The full faces load lazily. Regenerate the upright subset the same way with `text=<headline chars>` if the headline or wordmark changes. Previously: the upright display face plus a 2KB italic subset containing only the headline word ("remembered.") are preloaded. The full italic face loads lazily. If the italic headline word changes, refetch the subset: `curl -A "Chrome" "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,144,400&text=<word>"` and download the woff2 to `src/app/fonts/FrauncesItalic-remembered.woff2`.
 
 ## Motion
-- **Lenis** smooth scroll synced to the GSAP ticker; **GSAP ScrollTrigger + SplitText** (free since 3.13).
+- Native scrolling (Lenis was removed on 2026-08-30: JS smoothing fought scrollbar drags and mobile flicks); **GSAP ScrollTrigger + SplitText** with `scrub` easing, `ignoreMobileResize`, `anticipatePin`.
 - Hero: headline masked line reveal on load; sub/form fade+rise at 0.5s.
 - Waveform: SSR-rendered resting pattern; on mount a single rAF loop drives every bar's scaleY from two seeded speech patterns (bursts, pauses, jitter, spikes) crossfaded every 2.5s, advanced by time and by scroll (ScrollTrigger scrub through the hero), plus mouse-x proximity boost. Reduced motion: static.
 - Story: pinned 300vh stage, scrubbed timeline; headings crossfade at 0.33/0.66; chat messages at 0.05/0.2/0.4/0.52/0.75; background graph lights up nodes at those beats.

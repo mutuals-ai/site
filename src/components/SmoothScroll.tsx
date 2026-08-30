@@ -1,35 +1,32 @@
 "use client";
 import { useEffect } from "react";
-import Lenis from "lenis";
-import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
+import { ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
 
-/** Lenis smooth scroll synced to the GSAP ticker. No-op under reduced motion. */
+/**
+ * Scroll setup. Scrolling itself is native (no JS smoothing) so scrollbar
+ * drags, trackpads, wheels, keyboards, and touch all behave identically.
+ * ScrollTrigger scrubs provide the easing on the animations instead.
+ */
 export function SmoothScroll() {
   useEffect(() => {
-    if (prefersReducedMotion()) return;
-    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
-    lenis.on("scroll", ScrollTrigger.update);
-    const tick = (t: number) => lenis.raf(t * 1000);
-    gsap.ticker.add(tick);
-    gsap.ticker.lagSmoothing(0);
-    // anchor links
+    // iOS/Android address-bar show/hide fires resize events; ignoring them
+    // stops pinned sections from recalculating (and jumping) mid-scroll.
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
     const onClick = (e: MouseEvent) => {
       const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#"]');
       if (!a) return;
-      const el = document.querySelector(a.getAttribute("href")!);
-      if (!el) return;
+      const target = document.querySelector<HTMLElement>(a.getAttribute("href")!);
+      if (!target) return;
       e.preventDefault();
-      const target = el as HTMLElement;
-      // Centre the target in the viewport (keeps it clear of the fixed nav), then focus its field.
-      const offset = -Math.max(96, (window.innerHeight - target.offsetHeight) / 2);
-      lenis.scrollTo(target, {
-        offset,
-        duration: 1.1,
-        onComplete: () => target.querySelector<HTMLInputElement>("input:not([type=hidden])")?.focus({ preventScroll: true }),
-      });
+      const top = target.getBoundingClientRect().top + window.scrollY - Math.max(96, (window.innerHeight - target.offsetHeight) / 2);
+      window.scrollTo({ top, behavior: prefersReducedMotion() ? "auto" : "smooth" });
+      window.setTimeout(() => target.querySelector<HTMLInputElement>("input:not([type=hidden])")?.focus({ preventScroll: true }), 700);
     };
     document.addEventListener("click", onClick);
-    return () => { document.removeEventListener("click", onClick); gsap.ticker.remove(tick); lenis.destroy(); };
+    // Fonts change layout heights; refresh triggers once they are in.
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
+    return () => document.removeEventListener("click", onClick);
   }, []);
   return null;
 }
