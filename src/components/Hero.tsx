@@ -21,11 +21,11 @@ export function Hero() {
       <div className="relative z-10 mx-auto flex w-full max-w-[1120px] flex-1 flex-col items-center justify-center px-5 pt-20 text-center sm:px-8">
         {/* CSS-only masked rise: paints on first frame, so LCP never waits for JS. */}
         <h1
-          className="font-display font-display-hero max-w-[12ch] text-ink"
-          style={{ fontSize: "clamp(56px, 11vw, 168px)", lineHeight: 0.92, letterSpacing: "-0.03em" }}
+          className="font-sans w-full font-medium text-ink"
+          style={{ fontSize: "clamp(36px, 6.9vw, 100px)", lineHeight: 1.02, letterSpacing: "-0.04em" }}
         >
           <span className="hero-line"><span className="hero-line-inner" style={{ animationDelay: "0.1s" }}>{copy.hero.headline[0]}</span></span>
-          <span className="hero-line"><span className="hero-line-inner" style={{ animationDelay: "0.2s" }}><em>{copy.hero.headline[1]}</em></span></span>
+          <span className="hero-line"><span className="hero-line-inner" style={{ animationDelay: "0.2s" }}>{copy.hero.headline[1]}</span></span>
         </h1>
 
         <div className="hero-fade mt-12 flex max-w-[560px] flex-col items-center gap-5">

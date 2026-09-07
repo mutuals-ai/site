@@ -66,8 +66,8 @@ export async function renderOgImage(): Promise<ImageResponse> {
               letterSpacing: "-0.02em",
             }}
           >
-            <span>Your people,</span>
-            <span>remembered.</span>
+            <span>A second brain for</span>
+            <span>your relationships.</span>
           </div>
         </div>
 

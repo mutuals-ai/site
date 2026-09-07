@@ -126,7 +126,5 @@ body {
 @keyframes hero-fade { to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .hero-fade { opacity: 1; transform: none; animation: none; } }
 
-/* Preloaded glyph subsets: ONLY for text whose characters are fully covered
-   ("Your people," / "remembered." / "Mutuals"). Never use on other text. */
+/* Preloaded glyph subset (Fraunces at opsz 72, SOFT 0, WONK 0): ONLY for the "Mutuals" wordmark. Never use on other text. */
 .font-display-hero { font-family: var(--font-fraunces-sub), var(--font-fraunces), "Iowan Old Style", Georgia, serif; }
-.font-display-hero em { font-family: var(--font-fraunces-italic-sub), var(--font-fraunces-italic), var(--font-fraunces), Georgia, serif; }

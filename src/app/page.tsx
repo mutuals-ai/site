@@ -1,6 +1,6 @@
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
-import { Story } from "@/components/Story";
+import { HowItWorks } from "@/components/HowItWorks";
 import { Footer } from "@/components/Footer";
 
 export default function Page() {
@@ -9,9 +9,7 @@ export default function Page() {
       <Nav />
       <main>
         <Hero />
-        <div className="mx-auto max-w-[1120px] px-5 sm:px-8">
-          <Story />
-        </div>
+        <HowItWorks />
       </main>
       <Footer />
     </>

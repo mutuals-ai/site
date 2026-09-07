@@ -2,7 +2,7 @@
 export const copy = {
   nav: { brand: "Mutuals", cta: "Join the waitlist" },
   hero: {
-    headline: ["Your people,", "remembered."],
+    headline: ["A second brain for", "your relationships."],
     sub: "Send it a voice note after you meet someone. It files the person, the context, and the intro you promised. Then it sends you one message a day. No app to open.",
     placeholder: "Email or WhatsApp number",
     button: "Join the waitlist",
@@ -16,11 +16,50 @@ export const copy = {
     arcLabel: "intro · pending",
     reminder: "Tomorrow 08:30: reminder to make the intro.",
   },
-  steps: [
-    { n: "01", title: "You talk.", body: "“Met Sarah at the Sequoia dinner. She's building drones. Intro her to Ben.” That's the whole input: voice note, text, or a forwarded contact." },
-    { n: "02", title: "It remembers.", body: "Every note is filed to the right person. Five Sarahs? It asks once, then never again. Nothing is lost in a chat history. Everything lives in one record you can open any time." },
-    { n: "03", title: "It connects.", body: "Ask it anything: who do I know in private equity in London? It answers with names and reasons. Every morning, one message: who to reconnect with, which intro you promised, who might help whom.", em: "who do I know in private equity in London?" },
-  ],
+  how: {
+    label: "How it works",
+    scenes: [
+      { n: "01", title: ["You", "talk."], body: "One voice note after you meet someone. That's the whole input." },
+      { n: "02", title: ["It", "remembers."], body: "Every note is filed to the right person. Nothing gets lost in a chat history." },
+      { n: "03", title: ["It", "connects."], body: "Ask it anything about your network. Every morning, one message about who matters today." },
+    ],
+    /** Spoken transcript, split into plain runs and the entities Mutuals extracts. */
+    transcript: [
+      "Met ",
+      { entity: "Sarah" },
+      " at the ",
+      { entity: "Sequoia dinner" },
+      ", she's building ",
+      { entity: "autonomous drones" },
+      ", I want to intro her to ",
+      { entity: "Ben" },
+      ".",
+    ],
+    voice: { duration: 7, time: "21:14" },
+    record: {
+      name: "Sarah Lin",
+      role: "Founder, autonomous drones",
+      avatar: "/generated/avatars/a03.webp",
+      saved: "Saved from your voice note",
+      fields: [
+        { k: "Met", v: "Sequoia dinner, Aug 28" },
+        { k: "Building", v: "Autonomous drones" },
+        { k: "Intro", v: "Ben Roth, you promised" },
+        { k: "Next", v: "Reminder tomorrow, 08:30" },
+      ],
+      ghosts: [
+        { name: "Markus Hofer", role: "Partner, Speedinvest", avatar: "/generated/avatars/a07.webp" },
+        { name: "Anna Weiss", role: "Climate hardware", avatar: "/generated/avatars/a10.webp" },
+      ],
+    },
+    query: "who do I know in private equity in London?",
+    hits: [
+      { name: "James Whitfield", why: "Mid-market fund in Mayfair, met at Slush", avatar: "/generated/avatars/a05.webp" },
+      { name: "Amara Okafor", why: "Ex-Permira, now runs a family office", avatar: "/generated/avatars/a08.webp" },
+      { name: "Daniel Levy", why: "Closed a secondaries fund in May", avatar: "/generated/avatars/a02.webp" },
+    ],
+    channels: "Lives in WhatsApp and Telegram. No app to install.",
+  },
   digest: {
     label: "08:30 · every day · that's it",
     header: "Mutuals · Tue Sep 2",
@@ -46,16 +85,6 @@ export const copy = {
     "who should meet Anna?",
     "who went quiet this month?",
   ],
-  story: {
-    voice: "Met Sarah at the Sequoia dinner, she's building autonomous drones, I want to intro her to Ben.",
-    receipt: ["✓ Saved to Sarah Lin", "Sequoia dinner · Aug 28", "+ autonomous drones", "+ intro → Ben Roth"],
-    question: "who do I know in private equity in London?",
-    answer: [
-      { who: "James Whitfield", why: "partner at a mid-market fund in Mayfair, met at Slush" },
-      { who: "Amara Okafor", why: "ex-Permira, now runs a family office" },
-      { who: "Daniel Levy", why: "closed a secondaries fund in May, you had coffee" },
-    ],
-  },
   network: {
     title: "It connects the dots.",
     query: "who do I know in private equity in London?",

@@ -1,6 +1,6 @@
 import { copy } from "@/lib/copy";
 
-/** Slim footer: contact, legal. The giant wordmark closes the page. */
+/** Slim footer: contact, legal. The giant wordmark closes the page, shown whole. */
 export function Footer() {
   return (
     <footer className="relative mt-[48px] lg:mt-[64px]">
@@ -15,10 +15,10 @@ export function Footer() {
           <span>© 2026 Mutuals · Vienna</span>
         </div>
         <div
-          className="mt-10 h-[0.6em] w-full overflow-hidden font-display text-[clamp(96px,21vw,340px)] leading-none text-ink select-none"
+          className="font-display font-display-hero mt-10 w-full pb-10 text-[clamp(88px,19vw,300px)] leading-[0.9] tracking-[-0.03em] text-ink select-none"
           aria-hidden="true"
         >
-          <span className="block translate-y-[0.04em]">Mutuals</span>
+          Mutuals
         </div>
       </div>
     </footer>

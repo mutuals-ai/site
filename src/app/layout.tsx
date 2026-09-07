@@ -8,28 +8,18 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
-  axes: ["opsz", "SOFT"],
+  axes: ["opsz", "SOFT", "WONK"],
   style: "normal",
   weight: "variable",
   display: "swap",
   preload: false,
 });
-// Above-the-fold glyphs ("Your people," and the "Mutuals" wordmark) ship as a tiny preloaded subset.
-// Regenerate ./fonts/Fraunces-hero.woff2 if the headline or wordmark text changes (see docs/design-decisions.md).
+// The "Mutuals" wordmark ships as a tiny preloaded Fraunces subset (a static instance at opsz 72 / SOFT 0 / WONK 0).
+// Regenerate ./fonts/Fraunces-hero-calm.woff2 if the wordmark text changes (see docs/design-decisions.md).
 const frauncesHeroSubset = localFont({
-  src: "./fonts/Fraunces-hero.woff2",
+  src: "./fonts/Fraunces-hero-calm.woff2",
   variable: "--font-fraunces-sub",
   style: "normal",
-  weight: "400",
-  display: "swap",
-  preload: true,
-});
-// The headline's italic word ships as a 2KB subset (preloaded) so the LCP never waits for the full italic face.
-// Regenerate ./fonts/FrauncesItalic-remembered.woff2 if the italic headline word changes (see docs/design-decisions.md).
-const frauncesItalicSubset = localFont({
-  src: "./fonts/FrauncesItalic-remembered.woff2",
-  variable: "--font-fraunces-italic-sub",
-  style: "italic",
   weight: "400",
   display: "swap",
   preload: true,
@@ -44,7 +34,8 @@ const frauncesItalic = Fraunces({
   display: "swap",
   preload: false,
 });
-const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap", preload: false });
+// Geist sets the headline (the LCP), so it is preloaded.
+const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap", preload: true });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap", preload: false });
 
 import { siteUrl } from "@/lib/site";
@@ -53,11 +44,11 @@ const SITE = siteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: "Mutuals · Your people, remembered.",
+  title: "Mutuals · A second brain for your relationships.",
   description:
     "Send it a voice note after you meet someone. It files the person, the context, and the intro you promised. Then it sends you one message a day. No app to open.",
   openGraph: {
-    title: "Mutuals · Your people, remembered.",
+    title: "Mutuals · A second brain for your relationships.",
     description: "Send it a voice note after you meet someone. One message a day. No app to open.",
     url: SITE,
     siteName: "Mutuals",
@@ -72,7 +63,7 @@ export const viewport: Viewport = { themeColor: "#0E0C0B", width: "device-width"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${frauncesHeroSubset.variable} ${frauncesItalicSubset.variable} ${frauncesItalic.variable} ${geist.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${frauncesHeroSubset.variable} ${frauncesItalic.variable} ${geist.variable} ${geistMono.variable}`}>
       <body className="min-h-dvh bg-paper text-ink">
         <SmoothScroll />
         {children}
