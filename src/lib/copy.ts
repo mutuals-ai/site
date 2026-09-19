@@ -97,5 +97,5 @@ export const copy = {
   },
   daily: { title: "One message a day." },
   join: { title: "Get on the list." },
-  footer: { email: "hello@getmutuals.ai", links: [{ label: "Privacy", href: "/privacy" }, { label: "Imprint", href: "/imprint" }] },
+  footer: { email: "hello@getmutuals.ai", links: [{ label: "Docs", href: "/docs" }, { label: "Privacy", href: "/privacy" }, { label: "Terms", href: "/terms" }, { label: "Imprint", href: "/imprint" }] },
 } as const;
