@@ -9,11 +9,11 @@ import { ImageResponse } from "next/og";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const PAPER = "#0E0C0B";
-const CARD = "#1A1715";
-const CARD_BORDER = "#2A2623";
-const INK = "#F2EDE4";
-const SIGNAL = "#5FA8F7";
+const PAPER = "#ffffff";
+const CARD = "#eaf3ed";
+const CARD_BORDER = "#dce4df";
+const INK = "#18201f";
+const SIGNAL = "#185c43";
 
 import { readFile } from "node:fs/promises";
 import path from "node:path";
@@ -66,8 +66,8 @@ export async function renderOgImage(): Promise<ImageResponse> {
               letterSpacing: "-0.02em",
             }}
           >
-            <span>A second brain for</span>
-            <span>your relationships.</span>
+            <span>Relationship memory</span>
+            <span>for your AI.</span>
           </div>
         </div>
 
@@ -89,11 +89,11 @@ export async function renderOgImage(): Promise<ImageResponse> {
           >
             <div style={{ display: "flex" }}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={SIGNAL} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: 10 }}><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
-              <span>Saved to Sarah Lin</span>
+              <span>Agent early access</span>
             </div>
-            <div style={{ display: "flex" }}>Sequoia dinner · Aug 28</div>
-            <div style={{ display: "flex" }}>+ autonomous drones</div>
-            <div style={{ display: "flex" }}>+ intro → Ben Roth</div>
+            <div style={{ display: "flex" }}>Remember a conversation.</div>
+            <div style={{ display: "flex" }}>Choose the right person.</div>
+            <div style={{ display: "flex" }}>Recall with context.</div>
           </div>
         </div>
 

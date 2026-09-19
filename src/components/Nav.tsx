@@ -11,12 +11,16 @@ export function Nav() {
           <LogoMark className="h-6 w-6 shrink-0" title="Mutuals" />
           <span className="font-display font-display-hero text-[24px] text-ink">{copy.nav.brand}</span>
         </Link>
-        <a
-          href="#waitlist"
+        <nav aria-label="Main" className="flex items-center gap-5 text-[14px]">
+        <Link href="/#agents" className="hidden sm:block">Agents</Link>
+        <a href="https://app.getmutuals.ai/login">Sign in</a>
+        <Link
+          href="/#waitlist"
           className="flex h-10 items-center rounded-full border border-ink-faint px-4 font-mono text-[13px] transition-colors hover:border-ink"
         >
-          {copy.nav.cta} <span aria-hidden="true" className="ml-1.5">→</span>
-        </a>
+          Early access
+        </Link>
+        </nav>
       </div>
     </header>
   );
