@@ -28,11 +28,13 @@ export function Hero() {
           <span className="hero-line"><span className="hero-line-inner" style={{ animationDelay: "0.2s" }}>{copy.hero.headline[1]}</span></span>
         </h1>
 
-        <div className="hero-fade mt-12 flex max-w-[560px] flex-col items-center gap-5">
+        <div className="hero-fade mt-7 mb-8 flex max-w-[620px] flex-col items-center gap-5">
+          <p className="max-w-[48ch] text-[17px] leading-relaxed text-ink-soft sm:text-[19px]">{copy.hero.sub}</p>
           <div className="w-full max-w-[520px]">
             <WaitlistForm id="waitlist" />
           </div>
           <p className="text-[14px] text-ink-soft">{copy.hero.reassurance}</p>
+          <a href="#agents" className="text-[14px] text-signal underline underline-offset-4">Explore Claude Code, Codex, Hermes, Grok and Muse</a>
         </div>
       </div>
 

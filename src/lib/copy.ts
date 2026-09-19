@@ -2,10 +2,10 @@
 export const copy = {
   nav: { brand: "Mutuals", cta: "Join the waitlist" },
   hero: {
-    headline: ["A second brain for", "your relationships."],
-    sub: "Send it a voice note after you meet someone. It files the person, the context, and the intro you promised. Then it sends you one message a day. No app to open.",
+    headline: ["Relationship memory", "for your AI."],
+    sub: "A second brain for the people in your life. Remember a conversation, enrich a connection, pick up where you left off — from the agents you already use.",
     placeholder: "Email or WhatsApp number",
-    button: "Join the waitlist",
+    button: "Join early access",
     meta: "Private beta · autumn 2026 · Vienna → everywhere",
     reassurance: "We only message you once, when your spot opens. No newsletter, no spam.",
   },
@@ -17,11 +17,11 @@ export const copy = {
     reminder: "Tomorrow 08:30: reminder to make the intro.",
   },
   how: {
-    label: "How it works",
+    label: "An illustrative journey",
     scenes: [
-      { n: "01", title: ["You", "talk."], body: "One voice note after you meet someone. That's the whole input." },
-      { n: "02", title: ["It", "remembers."], body: "Every note is filed to the right person. Nothing gets lost in a chat history." },
-      { n: "03", title: ["It", "connects."], body: "Ask it anything about your network. Every morning, one message about who matters today." },
+      { n: "01", title: ["You", "talk."], body: "Tell your agent about the conversation. Or capture a quick text or voice note in chat." },
+      { n: "02", title: ["It", "remembers."], body: "Enrich the person you already know, with the original note kept as a source." },
+      { n: "03", title: ["You", "recall."], body: "Bring relationship context into your next conversation, through the agent you choose." },
     ],
     /** Spoken transcript, split into plain runs and the entities Mutuals extracts. */
     transcript: [
@@ -58,11 +58,11 @@ export const copy = {
       { name: "Amara Okafor", why: "Ex-Permira, now runs a family office", avatar: "/generated/avatars/a08.webp" },
       { name: "Daniel Levy", why: "Closed a secondaries fund in May", avatar: "/generated/avatars/a02.webp" },
     ],
-    channels: "Lives in WhatsApp and Telegram. No app to install.",
+    channels: "Fictional demo · connection availability listed above",
   },
   digest: {
     label: "08:30 · every day · that's it",
-    header: "Mutuals · Tue Sep 2",
+    header: "Illustrative recall",
     items: [
       { n: "1", who: "Sarah Lin", why: "you promised an intro to Ben 9 days ago." },
       { n: "2", who: "Markus Hofer", why: "7 weeks quiet, you usually talk monthly." },
