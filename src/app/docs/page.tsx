@@ -51,7 +51,7 @@ export default function DocsPage() {
       <DocSection id="status" title="What we have tested">
         <p>We only list a client as working after running its real, installed version against Mutuals.</p>
         <DocList>
-          <li>Claude Code 2.1.274: sign-in, consent and tool discovery.</li>
+          <li>Claude Code 2.1.278: sign-in, consent and tool discovery.</li>
           <li>Codex 0.154.0: sign-in, consent, save, recall with sources, and undo.</li>
           <li>Hermes Agent 0.21.3: sign-in, consent and tool discovery.</li>
           <li>Muse and Grok: not verified yet. They are not listed as supported until they are.</li>
