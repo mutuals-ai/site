@@ -1,7 +1,7 @@
 import { size, contentType, renderOgImage } from "@/lib/og";
 
 export const runtime = "nodejs";
-export const alt = "Mutuals · A second brain for your relationships.";
+export const alt = "Mutuals · Relationship memory for your AI.";
 export { size, contentType };
 
 export default async function Image() {

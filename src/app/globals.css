@@ -2,16 +2,15 @@
 
 /* ── Mutuals tokens [DECISION] ─────────────────────────────── */
 :root {
-  /* Dark theme [DECISION 2026-08-30]: paper = near-black ground, ink = light type.
-     Semantic names kept so components read the same on either theme. */
-  --ink: #f2ede4;
-  --paper: #0e0c0b;
-  --paper-2: #1a1715;
-  --signal: #5fa8f7;
-  --signal-2: #a9cdff;
+  /* Agent-first direction, September 2026; existing semantic tokens remain compatible. */
+  --ink: #18201f;
+  --paper: #ffffff;
+  --paper-2: #dce4df;
+  --signal: #185c43;
+  --signal-2: #185c43;
   --ember: #b8452b;
-  --ink-soft: rgba(242, 237, 228, 0.66);
-  --ink-faint: rgba(242, 237, 228, 0.52);
+  --ink-soft: #56645e;
+  --ink-faint: #56645e;
   --grain-url: url("/generated/paper-grain.png");
 }
 

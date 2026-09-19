@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Manrope, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
@@ -35,8 +35,9 @@ const frauncesItalic = Fraunces({
   preload: false,
 });
 // Geist sets the headline (the LCP), so it is preloaded.
-const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap", preload: true });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap", preload: false });
+const headline = Manrope({ variable: "--font-manrope", subsets: ["latin"], display: "swap" });
+const geist = IBM_Plex_Sans({ variable: "--font-geist-sans", subsets: ["latin"], weight: ["400", "500", "600"], display: "swap", preload: true });
+const geistMono = IBM_Plex_Mono({ variable: "--font-geist-mono", subsets: ["latin"], weight: "400", display: "swap", preload: false });
 
 import { siteUrl } from "@/lib/site";
 
@@ -44,12 +45,12 @@ const SITE = siteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: "Mutuals · A second brain for your relationships.",
+  title: "Mutuals · Relationship memory for your AI",
   description:
-    "Send it a voice note after you meet someone. It files the person, the context, and the intro you promised. Then it sends you one message a day. No app to open.",
+    "Remember the people you meet, what matters to them, and where you left off. Relationship memory for the agents you choose. Join agent early access.",
   openGraph: {
-    title: "Mutuals · A second brain for your relationships.",
-    description: "Send it a voice note after you meet someone. One message a day. No app to open.",
+    title: "Mutuals · Relationship memory for your AI",
+    description: "Your people. Your choice of agent. Explore Mutuals agent early access.",
     url: SITE,
     siteName: "Mutuals",
     type: "website",
@@ -59,15 +60,14 @@ export const metadata: Metadata = {
   alternates: { canonical: SITE },
 };
 
-export const viewport: Viewport = { themeColor: "#0E0C0B", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#ffffff", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${frauncesHeroSubset.variable} ${frauncesItalic.variable} ${geist.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${headline.variable} ${fraunces.variable} ${frauncesHeroSubset.variable} ${frauncesItalic.variable} ${geist.variable} ${geistMono.variable}`}>
       <body className="min-h-dvh bg-paper text-ink">
         <SmoothScroll />
         {children}
-        <div className="paper-grain" aria-hidden="true" />
         {process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN ? (
           <Script defer data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN} src="https://plausible.io/js/script.js" strategy="afterInteractive" />
         ) : null}
