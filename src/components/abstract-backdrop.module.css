@@ -1,0 +1,12 @@
+.world {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.graph {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+  mask-image: linear-gradient(transparent, black 7%, black 92%, transparent);
+}

@@ -44,12 +44,12 @@ const SITE = siteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: "Mutuals · Relationship memory for your AI",
+  title: "Mutuals · A second brain for your relationships",
   description:
-    "Remember the people you meet, what matters to them, and where you left off. Relationship memory for the agents you choose. Join agent early access.",
+    "Turn conversation notes into richer profiles. Mutuals connects people, facts and source history, then brings that context to your AI agents.",
   openGraph: {
-    title: "Mutuals · Relationship memory for your AI",
-    description: "Your people. Your choice of agent. Explore Mutuals agent early access.",
+    title: "Mutuals · A second brain for your relationships",
+    description: "Capture a conversation. Enrich the right person. Recall the context through your agent.",
     url: SITE,
     siteName: "Mutuals",
     type: "website",
@@ -67,7 +67,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-dvh bg-paper text-ink">
         <SmoothScroll />
         {children}
-        <div className="paper-grain" aria-hidden="true" />
         {process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN ? (
           <Script defer data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN} src="https://plausible.io/js/script.js" strategy="afterInteractive" />
         ) : null}

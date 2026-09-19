@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type FormEvent } from "react";
+import { useEffect, useId, useState, type FormEvent } from "react";
 import Script from "next/script";
 import { copy } from "@/lib/copy";
-import { gsap, prefersReducedMotion } from "@/lib/gsap";
+import { ArrowIcon } from "./ArrowIcon";
 
 declare global {
   interface Window {
@@ -52,50 +52,6 @@ export function WaitlistForm({
   const reactId = useId();
   const turnstileCallback = `mutualsTurnstileCb${reactId.replace(/[^a-zA-Z0-9]/g, "")}`;
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-  const buttonRef = useRef<HTMLButtonElement>(null);
-
-  // Magnetic hover: on fine-pointer desktop, nudge the submit button up to 6px
-  // toward the cursor within a 40px radius. No-op on touch or reduced motion.
-  useEffect(() => {
-    const btn = buttonRef.current;
-    if (!btn || prefersReducedMotion()) return;
-    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
-    if (!mq.matches) return;
-
-    const RADIUS = 40;
-    const MAX_OFFSET = 6;
-    const scale = MAX_OFFSET / RADIUS;
-    const xTo = gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3" });
-    const yTo = gsap.quickTo(btn, "y", { duration: 0.4, ease: "power3" });
-
-    function onMove(e: PointerEvent) {
-      const rect = btn!.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
-      const reach = RADIUS + Math.max(rect.width, rect.height) / 2;
-      if (Math.hypot(dx, dy) < reach) {
-        xTo(dx * scale);
-        yTo(dy * scale);
-      } else {
-        xTo(0);
-        yTo(0);
-      }
-    }
-    function reset() {
-      xTo(0);
-      yTo(0);
-    }
-
-    window.addEventListener("pointermove", onMove);
-    btn.addEventListener("pointerleave", reset);
-    return () => {
-      window.removeEventListener("pointermove", onMove);
-      btn.removeEventListener("pointerleave", reset);
-    };
-  }, []);
-
   useEffect(() => {
     // Reading location.search has to wait until after mount: there's no
     // `window` during SSR, and reading it during render would make the hidden
@@ -229,7 +185,6 @@ export function WaitlistForm({
               <input type="hidden" name="utm" value={JSON.stringify(utm)} />
             </div>
             <button
-              ref={buttonRef}
               type="submit"
               disabled={pending}
               className={
@@ -239,9 +194,7 @@ export function WaitlistForm({
               }
             >
               {pending ? "Joining…" : copy.hero.button}
-              <span aria-hidden="true" className="inline-block transition-transform duration-200 group-hover:translate-x-[3px]">
-                →
-              </span>
+              <ArrowIcon />
             </button>
           </div>
           {error ? (

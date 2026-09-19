@@ -49,14 +49,13 @@ const NODE_COUNT_DESKTOP = 12;
 const NODE_COUNT_MOBILE = 8;
 
 // Central headline/sub/form exclusion zone, as fractions of the layer.
-const EXCLUDE_DESKTOP = { x0: 0.28, x1: 0.72, y0: 0.1, y1: 0.62 };
-const EXCLUDE_MOBILE = { x0: 0.15, x1: 0.85, y0: 0.08, y1: 0.7 };
+const EXCLUDE_DESKTOP = { x0: 0.22, x1: 0.78, y0: 0.12, y1: 0.85 };
+const EXCLUDE_MOBILE = { x0: 0.05, x1: 0.95, y0: 0.12, y1: 0.82 };
 
-// Keep nodes clear of the waveform band regardless of viewport height: cap
-// placement to the upper part of the hero.
-const Y_MAX_DESKTOP = 0.6;
-const Y_MAX_MOBILE = 0.64;
-const Y_MIN = 0.04;
+// The graph frames the full hero; the exclusion zone protects its headline and agent controls.
+const Y_MAX_DESKTOP = 0.95;
+const Y_MAX_MOBILE = 0.98;
+const Y_MIN = 0.1;
 
 function initialsOf(name: string): string {
   const parts = name.trim().split(/\s+/);
@@ -93,6 +92,12 @@ function buildNetwork(seed: number, isMobile: boolean): { nodes: Node[]; edges: 
       fy = Y_MIN + rand() * (yMax - Y_MIN);
       tries += 1;
     } while ((inExclusion(fx, fy) || !farEnough(fx, fy)) && tries < 60);
+
+    // Small screens leave only the top and bottom margins clear of the copy and logos.
+    if (isMobile) {
+      fx = [0.1, 0.35, 0.65, 0.9][i % 4];
+      fy = i < 4 ? 0.1 : 0.96;
+    }
 
     nodes.push({
       fx,
@@ -162,7 +167,7 @@ const AVATAR_HALF_MOBILE = 20; // half of 40px
  * colour); the layer is blurred and dimmed so the headline stays the clear
  * focus. Reduced motion: static, no drift/parallax/pulse.
  */
-export function HeroNetwork() {
+export function HeroNetwork({ paused = false }: { paused?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollLayerRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<Array<HTMLDivElement | null>>([]);
@@ -207,7 +212,7 @@ export function HeroNetwork() {
 
     import("@/lib/gsap").then(({ gsap, ScrollTrigger, prefersReducedMotion }) => {
       if (disposed) return;
-      const reduceMotion = prefersReducedMotion();
+      const reduceMotion = prefersReducedMotion() || paused;
       const nodeEls = nodeRefs.current;
       const innerEls = nodeInnerRefs.current;
       const lineEls = lineRefs.current;
@@ -425,6 +430,8 @@ export function HeroNetwork() {
         io.disconnect();
         st.kill();
         pulseCall.kill();
+        gsap.killTweensOf(innerEls);
+        gsap.killTweensOf(lineEls);
         pulseTweens.forEach((tw) => tw.kill());
         window.removeEventListener("pointermove", onPointerMove);
         window.removeEventListener("resize", onResize);
@@ -435,7 +442,7 @@ export function HeroNetwork() {
       disposed = true;
       cleanup?.();
     };
-  }, [nodes, edges, size.w, size.h, isMobile]);
+  }, [nodes, edges, size.w, size.h, isMobile, paused]);
 
   const avatarSizeClass = "h-10 w-10 lg:h-14 lg:w-14";
 
@@ -445,7 +452,7 @@ export function HeroNetwork() {
       aria-hidden="true"
       className="absolute inset-0 -z-0 overflow-hidden pointer-events-none"
     >
-      <div ref={scrollLayerRef} className="absolute inset-0" style={{ opacity: 0.7, filter: "blur(1.5px)" }}>
+      <div ref={scrollLayerRef} className="absolute inset-0" style={{ opacity: 0.8 }}>
         <svg
           ref={svgRef}
           width="100%"
@@ -484,6 +491,7 @@ export function HeroNetwork() {
               className={`relative overflow-hidden rounded-full ${avatarSizeClass}`}
               style={{ border: "1px solid rgba(242,237,228,0.25)" }}
             >
+              {/* eslint-disable-next-line @next/next/no-img-element -- decorative local portraits */}
               <img
                 src={`/generated/avatars/a${String((i % NODE_COUNT_DESKTOP) + 1).padStart(2, "0")}.webp`}
                 alt=""
@@ -513,7 +521,7 @@ export function HeroNetwork() {
           headline/sub/form. A mask, not decoration; sits above the blurred
           layer and is not itself blurred. */}
       <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(14,12,11,0.75)_0%,rgba(14,12,11,0.2)_45%,transparent_70%)]"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(8,9,11,0.92)_0%,rgba(8,9,11,0.4)_38%,transparent_68%)]"
       />
     </div>
   );
