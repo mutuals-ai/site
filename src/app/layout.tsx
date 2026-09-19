@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Manrope, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
@@ -35,9 +35,8 @@ const frauncesItalic = Fraunces({
   preload: false,
 });
 // Geist sets the headline (the LCP), so it is preloaded.
-const headline = Manrope({ variable: "--font-manrope", subsets: ["latin"], display: "swap" });
-const geist = IBM_Plex_Sans({ variable: "--font-geist-sans", subsets: ["latin"], weight: ["400", "500", "600"], display: "swap", preload: true });
-const geistMono = IBM_Plex_Mono({ variable: "--font-geist-mono", subsets: ["latin"], weight: "400", display: "swap", preload: false });
+const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap", preload: true });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap", preload: false });
 
 import { siteUrl } from "@/lib/site";
 
@@ -60,14 +59,15 @@ export const metadata: Metadata = {
   alternates: { canonical: SITE },
 };
 
-export const viewport: Viewport = { themeColor: "#ffffff", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#0e0c0b", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${headline.variable} ${fraunces.variable} ${frauncesHeroSubset.variable} ${frauncesItalic.variable} ${geist.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${frauncesHeroSubset.variable} ${frauncesItalic.variable} ${geist.variable} ${geistMono.variable}`}>
       <body className="min-h-dvh bg-paper text-ink">
         <SmoothScroll />
         {children}
+        <div className="paper-grain" aria-hidden="true" />
         {process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN ? (
           <Script defer data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN} src="https://plausible.io/js/script.js" strategy="afterInteractive" />
         ) : null}

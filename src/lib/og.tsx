@@ -9,11 +9,11 @@ import { ImageResponse } from "next/og";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const PAPER = "#ffffff";
-const CARD = "#eaf3ed";
-const CARD_BORDER = "#dce4df";
-const INK = "#18201f";
-const SIGNAL = "#185c43";
+const PAPER = "#0e0c0b";
+const CARD = "#1a1715";
+const CARD_BORDER = "#393330";
+const INK = "#f2ede4";
+const SIGNAL = "#5fa8f7";
 
 import { readFile } from "node:fs/promises";
 import path from "node:path";

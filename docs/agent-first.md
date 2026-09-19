@@ -1,5 +1,35 @@
 # Agent-first website, September 2026
 
+## Owner correction: restore the animated identity
+
+The owner rejected the white/green redesign as bland and explicitly prefers the
+original animated site. This supersedes the visual plan below, not the agent-first
+product direction. Restore the existing network, waveform and scroll narrative.
+
+Palette: night #0e0c0b, raised surface #1a1715, warm ink #f2ede4,
+signal blue #5fa8f7, focus blue #a9cdff. Restore Geist for the large centered
+headline/body, Geist Mono for small controls, Fraunces for the wordmark and story.
+
+Layout: original full-viewport centered hero, then prominent connector directory,
+then original animated story; small supporting identity feature and privacy text.
+
+```
+               Mutuals                         Agents / Sign in
+                   Relationship memory
+                       for your AI.
+                [Early access] [Explore agents]
+          original moving network + living waveform
+             Claude Code / Codex / Hermes / Grok / Muse
+                  original scroll-driven story
+                   supporting features / privacy
+```
+
+Critique before build: merely darkening the new cards would not restore what the
+owner liked. Reuse the original animation components and composition, not a new
+approximation. Adapt new sections to those tokens. Keep reduced-motion fallbacks,
+truthful beta labels and fictional-demo disclosure; do not restore old unsupported
+claims about automatic daily messages or calendar access.
+
 The owner's approved agent-first plan supersedes the old chat-only waitlist brief.
 Keep the working waitlist API, referral handling and domain deployment unchanged.
 

@@ -406,7 +406,7 @@ function DigestCard() {
   return (
     <div data-digest className="w-[min(92vw,440px)] rounded-[22px] p-6" style={SURFACE}>
       <p className="flex items-center justify-between font-mono text-[12px] text-ink-faint">
-        <span>Tomorrow, 08:30</span>
+        <span>Before your next conversation</span>
         <span className="text-signal">{copy.digest.header}</span>
       </p>
       <ol className="mt-4 space-y-3.5">
@@ -791,7 +791,7 @@ export function HowItWorks() {
                       <NetworkScene compact />
                     </div>
                     <HitList />
-                    <p className="mt-6 font-mono text-[12px] text-ink-faint">Then, every morning</p>
+                    <p className="mt-6 font-mono text-[12px] text-ink-faint">Ask your agent to bring you up to speed</p>
                     <DigestCard />
                   </div>
                 ) : null}
