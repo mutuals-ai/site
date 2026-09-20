@@ -1,7 +1,7 @@
 export type AgentListing = {
   slug: string;
   name: string;
-  status: "Planned" | "Beta" | "Available";
+  status: "Coming soon" | "Beta" | "Available";
   summary: string;
   detail: string;
   marketplace: string;
@@ -39,7 +39,7 @@ export const agents: readonly AgentListing[] = [
   {
     slug: "openclaw",
     name: "OpenClaw",
-    status: "Planned",
+    status: "Coming soon",
     summary: "Relationship memory for your OpenClaw agent.",
     detail:
       "Connection and permission flow have not yet passed Mutuals acceptance testing. Setup instructions will be published after verification.",
@@ -48,7 +48,7 @@ export const agents: readonly AgentListing[] = [
   {
     slug: "grok",
     name: "Grok",
-    status: "Planned",
+    status: "Coming soon",
     summary: "Your relationships, in Grok.",
     detail:
       "Official Grok at grok.com. Custom connector setup is being verified; no working Mutuals connection is advertised yet.",
@@ -57,7 +57,7 @@ export const agents: readonly AgentListing[] = [
   {
     slug: "muse",
     name: "Muse",
-    status: "Planned",
+    status: "Coming soon",
     summary: "A connector application is being prepared.",
     detail:
       "Submission and technical review are separate from approval. Muse is not available through Mutuals today; requirements and the review package must be completed first.",

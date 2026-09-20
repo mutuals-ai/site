@@ -34,29 +34,26 @@ const clients = [
   {
     slug: "openclaw",
     name: "OpenClaw",
-    instruction:
-      "OpenClaw compatibility is planned. We’re checking the connection and permission flow before publishing setup instructions.",
+    instruction: "Coming soon.",
     command: null,
   },
   {
     slug: "grok",
     name: "Grok Bot",
-    instruction:
-      "Grok Bot support is planned. Setup instructions will follow once the connection and permission flow have been verified.",
+    instruction: "Coming soon.",
     command: null,
   },
   {
     slug: "muse",
     name: "Muse",
-    instruction:
-      "Muse support is planned. The connector application and technical review are still pending.",
+    instruction: "Coming soon.",
     command: null,
   },
   {
     slug: "other",
     name: "Other agents",
     instruction:
-      "Mutuals uses MCP, an open standard for connecting agents to tools. Support depends on each client’s transport and authentication. Grok and Muse are planned; neither is available yet.",
+      "Mutuals uses MCP, an open standard for connecting agents to tools. If your agent accepts a custom connector, add https://app.getmutuals.ai/mcp and approve access in your browser.",
     command: null,
   },
 ];
@@ -102,7 +99,9 @@ export function AgentShowcase() {
             Add Mutuals to{" "}
             {client.name === "Other agents" ? "your agent" : client.name}
           </span>
-          <span className={s.status}>{listing?.status ?? "Planned"}</span>
+          {client.slug !== "other" && (
+            <span className={s.status}>{listing?.status ?? "Coming soon"}</span>
+          )}
         </div>
         <div className={s.setupGrid}>
           <div>
@@ -152,27 +151,6 @@ export function AgentShowcase() {
               </div>
             )}
           </div>
-        </div>
-        <div className={s.setupFoot}>
-          {client.command && (
-            <p className={s.betaNote}>
-              Owner-test beta. Access is limited while hosted sign-in is being
-              tested.
-            </p>
-          )}
-          {listing ? (
-            <details>
-              <summary>Beta testing details</summary>
-              <p>
-                {listing.detail} {listing.marketplace}
-              </p>
-            </details>
-          ) : (
-            <p>
-              Planned compatibility. No connection or platform endorsement is
-              implied.
-            </p>
-          )}
         </div>
       </div>
     </div>
