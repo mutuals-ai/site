@@ -92,7 +92,7 @@ export default function PrivacyPage() {
           <li>GitHub: in-app feedback reports, in a private repository.</li>
           <li>Vercel, Plausible, Cloudflare Turnstile and Resend: this website, its visit counts, its spam check and waitlist emails.</li>
         </DocList>
-        <p>Some of these providers are based in the United States. Where data leaves the European Economic Area, the transfer relies on the European Commission&apos;s standard contractual clauses or an adequacy decision that covers the provider.</p>
+        <p>Some of these providers are based in the United States, so parts of your data can be processed outside the European Economic Area. We use each of them under its standard data processing terms. If you want to know which safeguard applies to a particular provider, write to us and we will tell you.</p>
       </DocSection>
 
       <DocSection id="cookies" title="Cookies">
